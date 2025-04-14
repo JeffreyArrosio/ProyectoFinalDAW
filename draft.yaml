@@ -1,1 +1,52 @@
 # Espacio para crear los modelos del blueprint
+models:
+  Category:
+    type: string
+    description: text nullable
+    relationships:
+      hasMany: Column, News
+
+  News:
+    title: string
+    content: text
+    date: datetime
+    main_image: string
+    type: enum:local,regional,national,international
+    urgent: boolean nullable
+    category_id: id
+    user_id: id
+    relationships:
+      hasMany: Comment, Column
+      belongsToMany: Image
+
+  Column:
+    title: string
+    content: text
+    date: datetime
+    news_id: id
+    user_id: id
+    relationships:
+      hasMany: Comment
+      belongsToMany: Image
+
+  Blog:
+    title: string
+    content: text
+    date: datetime
+    main_image: string nullable
+    category_id: id
+    user_id: id
+    relationships:
+      hasMany: Comment
+      belongsToMany: Image
+
+  Image:
+    url: string
+
+  Comment:
+    content: string
+    date: datetime
+    rate: enum:0,1,2,3,4,5 nullable
+    user_id: id
+
+seeders: Category, News, Column, Blog, Comment
