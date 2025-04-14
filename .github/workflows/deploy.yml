@@ -1,0 +1,20 @@
+name: deploy
+
+on:
+  push:
+    branches: master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: 200.234.225.32
+          port: 2222
+          username: jeff
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: "cd /var/www/html/ProyectoFinalDAW; git pull origin master; php artisan config:clear; php artisan cache:clear; php artisan route:clear; sudo service php8.3-fpm reload; npm run build"
