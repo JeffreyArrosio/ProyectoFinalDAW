@@ -7,19 +7,25 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): Response
+     
+    public function store(Request $request): Response
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return response()->noContent();
+        $user = User::where('email', $request->email)->first();
+
+        $token = $user->createToken('react-client')->plainTextToken;
+
+        return response()->json([
+            'token' => $token,
+            'user' => $user
+        ]);
     }
 
     /**
