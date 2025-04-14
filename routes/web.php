@@ -8,6 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/{any}', function () {
     return ['Laravel' => app()->version()];
-})->where('any', '.*');;
+})->where('any', '^(?!api|storage|login|register).*$');;
 
 require __DIR__.'/auth.php';
