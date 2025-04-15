@@ -19,6 +19,7 @@ models:
     main_image: string
     type: enum:local,regional,national,international
     urgent: boolean default:0
+    premium: boolean default:0
     category_id: id
     user_id: id 
     relationships:
@@ -30,6 +31,7 @@ models:
     title: string
     content: text
     date: datetime
+    premium: boolean default:0
     news_id: id
     user_id: id
     relationships:
@@ -41,6 +43,7 @@ models:
     content: text
     date: datetime
     main_image: string 
+    premium: boolean default:0
     category_id: id
     user_id: id
     relationships:

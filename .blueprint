@@ -1,3 +1,28 @@
+created:
+    - database/factories/CategoryFactory.php
+    - database/factories/NewsFactory.php
+    - database/factories/ColumnFactory.php
+    - database/factories/BlogFactory.php
+    - database/factories/ImageFactory.php
+    - database/factories/CommentFactory.php
+    - database/migrations/2025_04_15_094058_create_categories_table.php
+    - database/migrations/2025_04_15_094059_create_news_table.php
+    - database/migrations/2025_04_15_094100_create_columns_table.php
+    - database/migrations/2025_04_15_094101_create_blogs_table.php
+    - database/migrations/2025_04_15_094102_create_images_table.php
+    - database/migrations/2025_04_15_094103_create_comments_table.php
+    - database/migrations/2025_04_15_094104_create_imageables_table.php
+    - app/Models/Category.php
+    - app/Models/News.php
+    - app/Models/Column.php
+    - app/Models/Blog.php
+    - app/Models/Image.php
+    - app/Models/Comment.php
+    - database/seeders/CategorySeeder.php
+    - database/seeders/NewsSeeder.php
+    - database/seeders/ColumnSeeder.php
+    - database/seeders/BlogSeeder.php
+    - database/seeders/CommentSeeder.php
 models:
     User: { admin: 'boolean default:0', type: 'enum:normal,premium,writer default:normal', relationships: { hasMany: 'News, Column, Blog, Comment' } }
     Category: { type: 'string unique', description: 'text nullable', relationships: { hasMany: 'Column, News' } }
