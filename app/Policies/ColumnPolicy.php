@@ -21,6 +21,11 @@ class ColumnPolicy
      */
     public function view(User $user, Column $column): bool
     {
+        if ($column->premium == 1) {
+            if ($user->type == "standard") {
+                return false;
+            }
+        }
         return true;
     }
 

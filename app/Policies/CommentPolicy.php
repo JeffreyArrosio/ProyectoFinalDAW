@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\News;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class NewsPolicy
+class CommentPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,13 +19,8 @@ class NewsPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, News $news): bool
+    public function view(User $user, Comment $comment): bool
     {
-        if ($news->premium == 1) {
-            if ($user->type == "standard") {
-                return false;
-            }
-        }
         return true;
     }
 
@@ -34,21 +29,21 @@ class NewsPolicy
      */
     public function create(User $user): bool
     {
-        return $user->admin == 1 || $user->type == "writer";
+        return true;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, News $news): bool
+    public function update(User $user, Comment $comment): bool
     {
-        return $user->admin == 1 || $user->type == "writer" && $news->user_id == $user->id;
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, News $news): bool
+    public function delete(User $user, Comment $comment): bool
     {
         return $user->admin == 1;
     }
@@ -56,7 +51,7 @@ class NewsPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, News $news): bool
+    public function restore(User $user, Comment $comment): bool
     {
         return false;
     }
@@ -64,7 +59,7 @@ class NewsPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, News $news): bool
+    public function forceDelete(User $user, Comment $comment): bool
     {
         return false;
     }

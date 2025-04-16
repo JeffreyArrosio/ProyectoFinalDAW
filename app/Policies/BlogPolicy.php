@@ -21,6 +21,11 @@ class BlogPolicy
      */
     public function view(User $user, Blog $blog): bool
     {
+        if ($blog->premium == 1) {
+            if ($user->type == "standard") {
+                return false;
+            }
+        }
         return true;
     }
 
