@@ -27,8 +27,9 @@ class BlogFactory extends Factory
             'content' => fake()->paragraphs(3, true),
             'date' => fake()->dateTime(),
             'main_image' => fake()->word(),
-            'category_id' => Category::factory(),
-            'user_id' => User::factory(),
+            'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(),
+            'user_id' => User::where('admin', 1)
+                ->orWhere('type', 'writer')->inRandomOrder()->first()->id ?? User::factory(),
         ];
     }
 }

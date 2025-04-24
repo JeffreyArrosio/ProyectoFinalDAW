@@ -26,8 +26,9 @@ class ColumnFactory extends Factory
             'title' => fake()->sentence(4),
             'content' => fake()->paragraphs(3, true),
             'date' => fake()->dateTime(),
-            'news_id' => News::factory(),
-            'user_id' => User::factory(),
+            'news_id' => News::inRandomOrder()->first()->id ?? News::factory(),
+            'user_id' => User::where('admin', 1)
+            ->orWhere('type', 'writer')->inRandomOrder()->first()->id ?? User::factory(),
         ];
     }
 }

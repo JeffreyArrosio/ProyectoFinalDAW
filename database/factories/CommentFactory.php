@@ -25,7 +25,7 @@ class CommentFactory extends Factory
             'content' => fake()->paragraphs(3, true),
             'date' => fake()->dateTime(),
             'rate' => fake()->randomElement(["0","1","2","3","4","5"]),
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),
         ];
     }
 }

@@ -29,8 +29,8 @@ class NewsFactory extends Factory
             'main_image' => fake()->word(),
             'type' => fake()->randomElement(["local","regional","national","international"]),
             'urgent' => fake()->boolean(),
-            'category_id' => Category::factory(),
-            'user_id' => User::factory(),
+            'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(),
+            'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),
         ];
     }
 }
