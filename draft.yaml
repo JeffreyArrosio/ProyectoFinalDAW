@@ -1,1 +1,66 @@
 # Espacio para crear los modelos del blueprint
+models:
+  # User:
+  #   admin: boolean default:0
+  #   type: enum:normal,premium,writer default:normal
+  #   relationships:
+  #     hasMany: News, Column, Blog, Comment
+
+  Category:
+    type: string unique
+    description: text nullable
+    relationships:
+      hasMany: Column, News
+
+  News:
+    title: string
+    content: text
+    date: datetime
+    main_image: string
+    type: enum:local,regional,national,international
+    urgent: boolean default:0
+    premium: boolean default:0
+    category_id: id
+    user_id: id 
+    relationships:
+      hasMany: Column
+      morphMany: Comment
+      morphToMany: Image
+
+  Column:
+    title: string
+    content: text
+    date: datetime
+    premium: boolean default:0
+    news_id: id
+    user_id: id
+    relationships:
+      morphMany: Comment
+      morphToMany: Image
+
+  Blog:
+    title: string
+    content: text
+    date: datetime
+    main_image: string 
+    premium: boolean default:0
+    category_id: id
+    user_id: id
+    relationships:
+      morphMany: Comment
+      morphToMany: Image
+
+  Image:
+    url: string
+    relationships:
+      morphedByMany: Imageable  
+
+  Comment: #el contenido o la puntuación, mínimo alguno de los 2 es obligatorio
+    content: text nullable
+    date: datetime
+    rate: enum:0,1,2,3,4,5 nullable
+    user_id: id
+    relationships:
+      morphTo: Commentable
+
+seeders: Category, News, Column, Blog, Comment
