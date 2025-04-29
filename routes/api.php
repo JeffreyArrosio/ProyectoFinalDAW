@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\v1\ModelController\ColumnController;
 use App\Http\Controllers\Api\v1\ModelController\CommentController;
 use App\Http\Controllers\Api\v1\ModelController\ImageController;
 use App\Http\Controllers\Api\v1\ModelController\NewsController;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -17,7 +18,10 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 
-Route::post('/login', function (Request $request) {
+Route::post('/login', function (LoginRequest $request) {
+
+    $request->authenticate();
+
     $user = User::where('email', $request->email)->first();
     
 
