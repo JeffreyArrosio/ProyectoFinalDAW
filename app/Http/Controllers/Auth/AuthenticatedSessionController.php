@@ -12,7 +12,7 @@ use App\Models\User;
 class AuthenticatedSessionController extends Controller
 {
      
-    public function store(Request $request): Response
+    public function store(LoginRequest $request)
     {
         $request->authenticate();
 
@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): Response
+    public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
 
