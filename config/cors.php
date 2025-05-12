@@ -19,7 +19,7 @@ return [
 
         'allowed_methods' => ['*'],
 
-        'allowed_origins' => ['https://rafael.informaticamajada.es/'],
+        'allowed_origins' => ['https://rafael.informaticamajada.es'],
 
         'allowed_origins_patterns' => [],
 
