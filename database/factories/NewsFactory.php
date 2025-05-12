@@ -26,7 +26,7 @@ class NewsFactory extends Factory
             'title' => fake()->sentence(4),
             'content' => fake()->paragraphs(3, true),
             'date' => fake()->dateTime(),
-            'main_image' => fake()->word(),
+            'main_image' => "https://picsum.photos/id/".$this->faker->randomNumber(3)."/300/300",
             'type' => fake()->randomElement(["local", "regional", "national", "international"]),
             'urgent' => fake()->boolean(),
             'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(),
