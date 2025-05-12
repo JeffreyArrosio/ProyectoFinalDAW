@@ -28,7 +28,7 @@ class NewsController extends Controller
         $news->urgent = $request['urgent'] ?? 0;
         $news->premium = $request['premium'] ?? 0;
         $news->user_id = $request['user_id'];
-        $news->cathegory_id = $request['cathegory_id'];
+        $news->category_id = $request['category_id'];
 
         if ($request->hasFile('main_image')) {
             $path = $request->file('main_image')->store('news', 'public');
