@@ -23,7 +23,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $type = 'standart';
+        $type = 'standard';
         if (fake()->numberBetween(1, 100) > 80) {
             $type = 'writer';
         }
