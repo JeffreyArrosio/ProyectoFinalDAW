@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
         User::factory(20)->create();
 
         $this->call([
-            Category::class,
-            News::class,
-            Blog::class,
-            Column::class,
+            CategorySeeder::class,
+            NewsSeeder::class,
+            BlogSeeder::class,
+            ColumnSeeder::class,
         ]);
     }
 }
