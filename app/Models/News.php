@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Laravel\Sanctum\HasApiTokens;
+use Orion\Concerns\DisableAuthorization;
 
 class News extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens, DisableAuthorization;
 
     /**
      * The attributes that are mass assignable.
