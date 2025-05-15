@@ -6,9 +6,9 @@ use App\Models\News;
 use Orion\Http\Controllers\RelationController;
 use Illuminate\Http\Request;
 
-class NewsColumnsController extends RelationController
+class NewsCommentsController extends RelationController
 {
     protected $model = News::class;
 
-    protected $relation = 'columns';
+    protected $relation = 'comments';
 }
