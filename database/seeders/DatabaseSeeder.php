@@ -2,10 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Blog;
-use App\Models\Category;
-use App\Models\Column;
-use App\Models\News;
+
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
