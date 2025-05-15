@@ -12,6 +12,9 @@ use App\Http\Controllers\Api\v1\RelationController\BlogImagesController;
 use App\Http\Controllers\Api\v1\RelationController\BlogCategoryController;
 use App\Http\Controllers\Api\v1\RelationController\BlogUserController;
 use App\Http\Controllers\Api\v1\RelationController\CategoryColumnsController;
+use App\Http\Controllers\Api\v1\RelationController\CategoryNewsController;
+use App\Http\Controllers\Api\v1\RelationController\ColumnCommetsController;
+use App\Http\Controllers\Api\v1\RelationController\ColumnImagesController;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,5 +57,7 @@ Route::group(['as' => 'api'], function() {
     Orion::belongsToResource('blog', 'category', BlogCategoryController::class);
     Orion::belongsToResource('blog', 'user', BlogUserController::class);
     Orion::morphToResource('category', 'columns', CategoryColumnsController::class);
-
+    Orion::morphToResource('category', 'news', CategoryNewsController::class);
+    Orion::morphToResource('column', 'comments', ColumnCommetsController::class);
+    Orion::morphToResource('column', 'images', ColumnImagesController::class);
 });
