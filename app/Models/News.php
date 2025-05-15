@@ -27,6 +27,7 @@ class News extends Model
         'main_image',
         'type',
         'urgent',
+        'premium',
         'category_id',
         'user_id',
     ];
