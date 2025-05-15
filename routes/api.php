@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\ModelController\CommentController;
 use App\Http\Controllers\Api\v1\ModelController\ImageController;
 use App\Http\Controllers\Api\v1\ModelController\NewsController;
 use App\Http\Controllers\Api\v1\ModelController\UserController;
+use App\Http\Controllers\Api\v1\RelationController\BlogCommentsController;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,5 +44,7 @@ Route::group(['as' => 'api'], function() {
     Orion::resource('images', ImageController::class);
     Orion::resource('news', NewsController::class);
     Orion::resource('users', UserController::class);
+
+    Orion::morphManyResource('blog', 'comments', BlogCommentsController::class);
     
 });
