@@ -24,7 +24,7 @@ class NewsController extends Controller
         ]);
         $news = new News();
         $news->title = $request['title'];
-        $news->content = $request['content'];
+        $news->content = "Estoy entrando en el metodo store de las noticias";
         $news->date = $request['date'];
         $news->type= $request['type'];
         $news->urgent = $request['urgent'] ?? 0;
