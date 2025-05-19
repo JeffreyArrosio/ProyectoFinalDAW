@@ -56,7 +56,7 @@ Route::post('/login', function (LoginRequest $request) {
     ]);
 });
 
-Route::group(['as' => 'api'], function () {
+Route::middleware('auth:sanctum')->group( function () {
 
     Orion::resource('blogs', BlogController::class);
     Orion::resource('categories', CategoryController::class);
@@ -88,4 +88,4 @@ Route::group(['as' => 'api'], function () {
     Orion::belongsToResource('users', 'redactor', RedactorRelationController::class);
     Orion::hasManyResource('users', 'following', UserFollowingController::class);
     Orion::hasManyResource('users', 'followers', UserFollowersController::class);
-})->middleware('auth:sanctum');
+});
