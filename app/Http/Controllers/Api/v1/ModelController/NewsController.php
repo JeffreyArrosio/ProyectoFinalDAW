@@ -12,7 +12,7 @@ use Orion\Concerns\DisablePagination;
 
 class NewsController extends Controller
 {
-    use DisableAuthorization, HasApiTokens, DisablePagination;
+    use HasApiTokens, DisablePagination;
 
     protected $model = News::class;
     protected $policy = NewsPolicy::class;
