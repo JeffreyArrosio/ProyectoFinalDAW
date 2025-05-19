@@ -38,6 +38,6 @@ class NewsController extends Controller
 
         $news->save();
 
-        return response()->json($news, 201);
+        return response()->json($path, 201);
     }
 }
