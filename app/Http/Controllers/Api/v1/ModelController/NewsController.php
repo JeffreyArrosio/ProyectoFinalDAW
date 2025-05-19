@@ -33,8 +33,12 @@ class NewsController extends Controller
         $news->category_id = $request['category_id'];
 
         if ($request->hasFile('main_image')) {
-            $path = $request->file('main_image')->store('news', 'public');
-            $news->main_image = $path;
+            try {
+                $path = $request->file('main_image')->store('news', 'public');
+                $news->main_image = $path;
+            } catch (\Exception $e) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
         }
 
         $news->save();
