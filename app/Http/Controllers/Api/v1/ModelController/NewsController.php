@@ -35,6 +35,8 @@ class NewsController extends Controller
         if ($request->hasFile('main_image')) {
             $path = $request->file('main_image')->store('news', 'public');
             $news->main_image = $path;
+        }else{
+            $news->main_image = "Enlace";
         }
 
         $news->save();
