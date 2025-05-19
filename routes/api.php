@@ -27,6 +27,8 @@ use App\Http\Controllers\Api\v1\RelationController\NewsCategoryController;
 use App\Http\Controllers\Api\v1\RelationController\NewsUserController;
 use App\Http\Controllers\Api\v1\RelationController\FollowerRelationController;
 use App\Http\Controllers\Api\v1\RelationController\RedactorRelationController;
+use App\Http\Controllers\Api\v1\RelationController\UserFollowingController;
+use App\Http\Controllers\Api\v1\RelationController\UserFollowersController;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -84,4 +86,6 @@ Route::group(['as' => 'api'], function () {
     Orion::belongsToResource('news', 'user', NewsUserController::class);
     Orion::belongsToResource('users', 'followers', FollowerRelationController::class);  
     Orion::belongsToResource('users', 'redactor', RedactorRelationController::class);
+    Orion::hasManyResource('users', 'following', UserFollowingController::class);
+    Orion::hasManyResource('users', 'followers', UserFollowersController::class);
 });
