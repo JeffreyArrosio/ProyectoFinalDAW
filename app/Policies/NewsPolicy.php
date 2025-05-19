@@ -21,11 +21,6 @@ class NewsPolicy
      */
     public function view(User $user, News $news): bool
     {
-        if ($news->premium == 1) {
-            if ($user->type == "standard") {
-                return false;
-            }
-        }
         return true;
     }
 
