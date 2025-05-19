@@ -88,4 +88,4 @@ Route::group(['as' => 'api'], function () {
     Orion::belongsToResource('users', 'redactor', RedactorRelationController::class);
     Orion::hasManyResource('users', 'following', UserFollowingController::class);
     Orion::hasManyResource('users', 'followers', UserFollowersController::class);
-});
+})->middleware('auth:sanctum');
