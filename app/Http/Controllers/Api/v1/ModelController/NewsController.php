@@ -20,7 +20,7 @@ class NewsController extends Controller
     public function store(Request $request){
 
         $validatedData = $request->validate([
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'main_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
         ]);
         $news = new News();
         $news->title = $request['title'];
