@@ -49,6 +49,15 @@ class User extends Authenticatable
         ];
     }
 
-    
+    // Usuarios normales que siguen redactores
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'redactor_id');
+    }
 
+    // Redactores que tienen seguidores
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'redactor_id', 'follower_id');
+    }
 }
