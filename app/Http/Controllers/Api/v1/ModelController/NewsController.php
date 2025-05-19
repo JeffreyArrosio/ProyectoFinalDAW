@@ -8,10 +8,11 @@ use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\HasApiTokens;
+use Orion\Concerns\DisablePagination;
 
 class NewsController extends Controller
 {
-    use DisableAuthorization, HasApiTokens;
+    use DisableAuthorization, HasApiTokens, DisablePagination;
 
     protected $model = News::class;
     protected $policy = NewsPolicy::class;

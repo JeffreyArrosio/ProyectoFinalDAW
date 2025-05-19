@@ -62,5 +62,16 @@ class User extends Authenticatable
             // Si no es writer, devuelve la imagen que tenga en la BD o la default
             return $value ?: 'https://i.pinimg.com/736x/08/d3/4e/08d34e4c00716bb8ad85f09e8291cbf8.jpg';
         });
+
+    // Usuarios normales que siguen redactores
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'redactor_id');
+    }
+
+    // Redactores que tienen seguidores
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'redactor_id', 'follower_id');
     }
 }

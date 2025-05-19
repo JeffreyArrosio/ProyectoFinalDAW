@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\ModelController\CommentController;
 use App\Http\Controllers\Api\v1\ModelController\ImageController;
 use App\Http\Controllers\Api\v1\ModelController\NewsController;
 use App\Http\Controllers\Api\v1\ModelController\UserController;
+use App\Http\Controllers\Api\v1\ModelController\FollowController;
 use App\Http\Controllers\Api\v1\RelationController\BlogCommentsController;
 use App\Http\Controllers\Api\v1\RelationController\BlogImagesController;
 use App\Http\Controllers\Api\v1\RelationController\BlogCategoryController;
@@ -24,6 +25,8 @@ use App\Http\Controllers\Api\v1\RelationController\NewsCommentsController;
 use App\Http\Controllers\Api\v1\RelationController\NewsImagesController;
 use App\Http\Controllers\Api\v1\RelationController\NewsCategoryController;
 use App\Http\Controllers\Api\v1\RelationController\NewsUserController;
+use App\Http\Controllers\Api\v1\RelationController\FollowerRelationController;
+use App\Http\Controllers\Api\v1\RelationController\RedactorRelationController;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +44,7 @@ Route::post('/login', function (LoginRequest $request) {
     $request->authenticate();
 
     $user = User::where('email', $request->email)->first();
-    
+
 
     $token = $user->createToken('react-client')->plainTextToken;
 
@@ -51,8 +54,8 @@ Route::post('/login', function (LoginRequest $request) {
     ]);
 });
 
-Route::group(['as' => 'api'], function() {
-    
+Route::group(['as' => 'api'], function () {
+
     Orion::resource('blogs', BlogController::class);
     Orion::resource('categories', CategoryController::class);
     Orion::resource('columns', ColumnController::class);
@@ -60,6 +63,7 @@ Route::group(['as' => 'api'], function() {
     Orion::resource('images', ImageController::class);
     Orion::resource('news', NewsController::class);
     Orion::resource('users', UserController::class);
+    Orion::resource('follows', FollowController::class);
 
     Orion::morphManyResource('blog', 'comments', BlogCommentsController::class);
     Orion::morphManyResource('blog', 'images', BlogImagesController::class);
@@ -78,4 +82,6 @@ Route::group(['as' => 'api'], function() {
     Orion::morphToResource('news', 'images', NewsImagesController::class);
     Orion::belongsToResource('news', 'category', NewsCategoryController::class);
     Orion::belongsToResource('news', 'user', NewsUserController::class);
+    Orion::belongsToResource('users', 'followers', FollowerRelationController::class);  
+    Orion::belongsToResource('users', 'redactor', RedactorRelationController::class);
 });
