@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,6 +51,16 @@ class User extends Authenticatable
         ];
     }
 
-    
-
+    protected function img(): Attribute
+    {
+        return Attribute::get(function ($value, $attributes) {
+            // Si es writer, devuelve la imagen especial, si no, la que tenga en la BD o la default
+            if ($attributes['type'] === 'writer') {
+                return 'https://i.pinimg.com/736x/22/78/cb/2278cb9755e65d7efd3f03e965b78ac5.jpg';
+            }
+            
+            // Si no es writer, devuelve la imagen que tenga en la BD o la default
+            return $value ?: 'https://i.pinimg.com/736x/08/d3/4e/08d34e4c00716bb8ad85f09e8291cbf8.jpg';
+        });
+    }
 }
