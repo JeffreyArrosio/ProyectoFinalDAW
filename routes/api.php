@@ -58,9 +58,9 @@ Route::post('/login', function (LoginRequest $request) {
     ]);
 });
 
-Route::post('/logout', function (Request $request) {
+Route::middleware('auth:sanctum')->post('/logout', function (Request $request) {
 
-    Auth::guard('web')->logout();
+    $request->user()->tokens()->delete();
 
     return response()->noContent();
 });
