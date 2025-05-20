@@ -83,14 +83,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Orion::belongsToResource('blog', 'user', BlogUserController::class);
     Orion::morphToResource('category', 'columns', CategoryColumnsController::class);
     Orion::morphToResource('category', 'news', CategoryNewsController::class);
-    Orion::morphToResource('column', 'comments', ColumnCommetsController::class);
+    Orion::morphManyResource('column', 'comments', ColumnCommetsController::class);
     Orion::morphToResource('column', 'images', ColumnImagesController::class);
     Orion::morphToResource('column', 'news', ColumnNewsController::class);
     Orion::belongsToResource('column', 'user', ColumnUserController::class);
     Orion::morphToResource('comment', 'commentable', CommentCommentableController::class);
     Orion::belongsToResource('comment', 'user', CommentUserController::class);
     Orion::morphToResource('news', 'columns', NewsColumnsController::class);
-    Orion::morphToResource('news', 'comments', NewsCommentsController::class);
+    Orion::morphManyResource('news', 'comments', NewsCommentsController::class);
     Orion::morphToResource('news', 'images', NewsImagesController::class);
     Orion::belongsToResource('news', 'category', NewsCategoryController::class);
     Orion::belongsToResource('news', 'user', NewsUserController::class);
