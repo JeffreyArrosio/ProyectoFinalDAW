@@ -56,7 +56,12 @@ Route::post('/login', function (LoginRequest $request) {
     ]);
 });
 
-Route::middleware('auth:sanctum')->group( function () {
+Route::post('/logout', function (Request $request) {
+    $request->user()->currentAccessToken()->delete();
+    return response()->noContent();
+});
+
+Route::middleware('auth:sanctum')->group(function () {
 
     Orion::resource('blogs', BlogController::class);
     Orion::resource('categories', CategoryController::class);
@@ -84,7 +89,7 @@ Route::middleware('auth:sanctum')->group( function () {
     Orion::morphToResource('news', 'images', NewsImagesController::class);
     Orion::belongsToResource('news', 'category', NewsCategoryController::class);
     Orion::belongsToResource('news', 'user', NewsUserController::class);
-    Orion::belongsToResource('users', 'followers', FollowerRelationController::class);  
+    Orion::belongsToResource('users', 'followers', FollowerRelationController::class);
     Orion::belongsToResource('users', 'redactor', RedactorRelationController::class);
     Orion::hasManyResource('users', 'following', UserFollowingController::class);
     Orion::hasManyResource('users', 'followers', UserFollowersController::class);
