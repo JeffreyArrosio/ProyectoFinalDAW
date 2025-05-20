@@ -59,12 +59,8 @@ Route::post('/login', function (LoginRequest $request) {
 });
 
 Route::post('/logout', function (Request $request) {
-    
+
     Auth::guard('web')->logout();
-
-    $request->session()->invalidate();
-
-    $request->session()->regenerateToken();
 
     return response()->noContent();
 });
