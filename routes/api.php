@@ -29,6 +29,7 @@ use App\Http\Controllers\Api\v1\RelationController\FollowerRelationController;
 use App\Http\Controllers\Api\v1\RelationController\RedactorRelationController;
 use App\Http\Controllers\Api\v1\RelationController\UserFollowingController;
 use App\Http\Controllers\Api\v1\RelationController\UserFollowersController;
+use App\Http\Controllers\Api\v1\RelationController\UserNewsController;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -97,4 +98,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Orion::belongsToResource('users', 'redactor', RedactorRelationController::class);
     Orion::hasManyResource('users', 'following', UserFollowingController::class);
     Orion::hasManyResource('users', 'followers', UserFollowersController::class);
+    Orion::hasManyResource('users', 'news', UserNewsController::class);
 });
