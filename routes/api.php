@@ -33,7 +33,9 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Orion\Facades\Orion;
+
 
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -57,7 +59,13 @@ Route::post('/login', function (LoginRequest $request) {
 });
 
 Route::post('/logout', function (Request $request) {
-    $request->user()->currentAccessToken()->delete();
+    
+    Auth::guard('web')->logout();
+
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
+
     return response()->noContent();
 });
 
