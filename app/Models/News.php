@@ -13,7 +13,7 @@ use Orion\Concerns\DisableAuthorization;
 
 class News extends Model
 {
-    use HasFactory, HasApiTokens;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.

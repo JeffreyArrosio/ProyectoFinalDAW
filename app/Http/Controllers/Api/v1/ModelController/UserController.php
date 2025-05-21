@@ -11,7 +11,7 @@ use Orion\Concerns\DisablePagination;
 
 class UserController extends Controller
 {
-    use HasApiTokens, DisablePagination, DisableAuthorization;
+    use DisablePagination, DisableAuthorization;
 
     protected $model = User::class;
     protected $policy = UserPolicy::class;

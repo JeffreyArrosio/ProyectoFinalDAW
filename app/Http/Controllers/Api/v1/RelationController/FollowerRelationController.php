@@ -9,7 +9,6 @@ use App\Models\Follow;
 class FollowerRelationController extends RelationController
 {
 
-    use DisableAuthorization;
     protected $model = Follow::class;
 
     protected $relation = 'follower';

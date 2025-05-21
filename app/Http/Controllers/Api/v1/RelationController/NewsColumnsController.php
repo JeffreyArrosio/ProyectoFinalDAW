@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 class NewsColumnsController extends RelationController
 {
 
-    use DisableAuthorization;
     protected $model = News::class;
 
     protected $relation = 'columns';

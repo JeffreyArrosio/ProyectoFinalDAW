@@ -6,10 +6,11 @@ use App\Models\Image;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Orion\Concerns\DisablePagination;
 
 class ImageController extends Controller
 {
-    use DisableAuthorization;
+    use DisablePagination;
 
     protected $model = Image::class;
 }
