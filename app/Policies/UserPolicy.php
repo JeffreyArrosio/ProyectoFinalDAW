@@ -28,7 +28,7 @@ class UserPolicy
      */
     public function viewRelatedFollowers(User $authUser, User $user)
     {
-        return $authUser->id === $user->id;
+        return true;
     }
 
     /**
@@ -36,7 +36,7 @@ class UserPolicy
      */
     public function viewRelatedFollowing(User $authUser, User $user)
     {
-        return $authUser->id === $user->id;
+        return true;
     }
 
     /**
@@ -44,12 +44,12 @@ class UserPolicy
      */
     public function attachNews(User $authUser, User $user)
     {
-        return $authUser->id === $user->id;
+        return true;
     }
 
     public function detachNews(User $authUser, User $user)
     {
-        return $authUser->id === $user->id;
+        return true;
     }
 
     /**
