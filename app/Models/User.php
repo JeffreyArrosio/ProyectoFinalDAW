@@ -70,7 +70,7 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'follows', 'follower_id', 'redactor_id');
     }
 
-    // Redactores que tienen seguidores
+    // Redactores que tstienen seguidores
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follows', 'redactor_id', 'follower_id');
