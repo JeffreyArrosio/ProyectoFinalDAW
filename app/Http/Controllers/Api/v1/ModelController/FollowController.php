@@ -10,11 +10,14 @@ use Laravel\Sanctum\HasApiTokens;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Concerns\DisablePagination;
 use Orion\Http\Controllers\Controller;
+use App\Policies\FollowPolicy;
 
 class FollowController extends Controller
 {
     use DisablePagination;
     protected $model = Follow::class;
+
+    protected $policy = FollowPolicy::class;
 
     public function findFollow(Request $request)
     {
