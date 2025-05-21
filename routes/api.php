@@ -66,6 +66,8 @@ Route::middleware('auth:sanctum')->post('/logout', function (Request $request) {
     return response()->noContent();
 });
 
+Route::get('/follows/find', [FollowController::class, 'findFollow'])->middleware('auth:sanctum');
+
 Route::middleware('auth:sanctum')->group(function () {
 
     Orion::resource('blogs', BlogController::class);
@@ -75,7 +77,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Orion::resource('images', ImageController::class);
     Orion::resource('news', NewsController::class);
     Orion::resource('users', UserController::class);
-    Route::get('/follows/find', [FollowController::class, 'findFollow']);
     Orion::resource('follows', FollowController::class);
 
     Orion::morphManyResource('blog', 'comments', BlogCommentsController::class);
