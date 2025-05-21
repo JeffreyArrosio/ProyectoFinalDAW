@@ -11,7 +11,7 @@ use Orion\Concerns\DisablePagination;
 
 class UserController extends Controller
 {
-    use DisablePagination, DisableAuthorization;
+    use DisablePagination;
 
     protected $model = User::class;
     protected $policy = UserPolicy::class;

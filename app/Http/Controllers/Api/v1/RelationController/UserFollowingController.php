@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class UserFollowingController extends RelationController
 {
-
+    use DisableAuthorization;
     protected $model = User::class;
 
     protected $relation = 'following';
