@@ -13,7 +13,7 @@ use Orion\Concerns\DisablePagination;
 class UserNewsController extends RelationController
 {
 
-    use DisablePagination;
+    use DisablePagination, DisableAuthorization;
     protected $model = User::class;
 
     protected $relation = 'news';
