@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\v1\RelationController;
 
 use App\Models\User;
-use App\Policies\NewsPolicy;
+use App\Policies\UserPolicy;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\RelationController;
 use Illuminate\Http\Request;
@@ -18,5 +18,5 @@ class UserNewsController extends RelationController
 
     protected $relation = 'news';
 
-    protected $policy = NewsPolicy::class;
+    protected $policy = UserPolicy::class;
 }
