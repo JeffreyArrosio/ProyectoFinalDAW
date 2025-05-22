@@ -54,11 +54,23 @@ class User extends Authenticatable
     protected function img(): Attribute
     {
         return Attribute::get(function ($value, $attributes) {
+            $images = [
+                "https://i.pinimg.com/1200x/dc/8a/57/dc8a57bd8fbedd276aa12de590b81a80.jpg",
+                'https://i.pinimg.com/736x/22/78/cb/2278cb9755e65d7efd3f03e965b78ac5.jpg',
+                "https://i.pinimg.com/736x/99/0d/16/990d16b9392d430e1d7b89eb8792bc3a.jpg",
+                "https://i.pinimg.com/736x/f1/4d/d3/f14dd30afa5712fe213eecbdb41df70e.jpg",
+                "https://i.pinimg.com/736x/00/58/69/0058693e87c9e00b8e321fcddd857dac.jpg",
+                "https://i.pinimg.com/736x/e4/3d/3d/e43d3db9721b95c316611aa7ac5460c6.jpg",
+                "https://i.pinimg.com/736x/2b/eb/48/2beb486e56bb6d556894ab42161b62bf.jpg",
+                "https://i.pinimg.com/736x/2e/33/14/2e331479df3d019b7a91c94ce4a28c46.jpg",
+                "https://i.pinimg.com/736x/e3/17/95/e3179580ccc5a5a6cdd24fa322991437.jpg"
+            ];
+            $randImg = $images(array_rand($images));
             // Si es writer, devuelve la imagen especial, si no, la que tenga en la BD o la default
             if ($attributes['type'] === 'writer') {
-                return 'https://i.pinimg.com/736x/22/78/cb/2278cb9755e65d7efd3f03e965b78ac5.jpg';
+                return $randImg;
             }
-            
+
             // Si no es writer, devuelve la imagen que tenga en la BD o la default
             return $value ?: 'https://i.pinimg.com/736x/08/d3/4e/08d34e4c00716bb8ad85f09e8291cbf8.jpg';
         });
