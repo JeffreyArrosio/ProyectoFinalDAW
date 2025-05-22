@@ -51,7 +51,7 @@ class User extends Authenticatable
         ];
     }
 
-    protected function img(): Attribute
+    protected function img()
     {
         return Attribute::get(function ($value, $attributes) {
             $images = [
@@ -68,7 +68,7 @@ class User extends Authenticatable
             $randImg = $images[array_rand($images)];
             // Si es writer, devuelve la imagen especial, si no, la que tenga en la BD o la default
             if ($attributes['type'] === 'writer') {
-                return $randImg;
+                return $value ?: $randImg;
             }
 
             // Si no es writer, devuelve la imagen que tenga en la BD o la default
