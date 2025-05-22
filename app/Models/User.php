@@ -65,7 +65,7 @@ class User extends Authenticatable
                 "https://i.pinimg.com/736x/2e/33/14/2e331479df3d019b7a91c94ce4a28c46.jpg",
                 "https://i.pinimg.com/736x/e3/17/95/e3179580ccc5a5a6cdd24fa322991437.jpg"
             ];
-            $randImg = $images(array_rand($images));
+            $randImg = $images[array_rand($images)];
             // Si es writer, devuelve la imagen especial, si no, la que tenga en la BD o la default
             if ($attributes['type'] === 'writer') {
                 return $randImg;
