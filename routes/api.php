@@ -34,7 +34,8 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Orion\Facades\Orion;
 
 
@@ -43,6 +44,39 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/signin', function (Request $request) {
+    
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        'img' => 'nullable|url',
+        'type' => 'in:standard,premium,writer',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'message' => 'Errores de validación',
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'img' => $request->img ?? 'https://i.pinimg.com/736x/08/d3/4e/08d34e4c00716bb8ad85f09e8291cbf8.jpg',
+        'password' => Hash::make($request->password),
+        'type' => $request->type ?? 'standard',
+    ]);
+
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+    return response()->json([
+        'message' => 'Usuario registrado correctamente',
+        'user' => $user,
+        'token' => $token,
+    ], 201);
+});
 
 Route::post('/login', function (LoginRequest $request) {
 
